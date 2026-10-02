@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-  <title>UP & Bihar Land Area Converter (Bigha, Biswa, Kattha, Gaj, Sq Ft)</title>
-  <meta name="description" content="Accurate land area converter and circle rate registry cost estimator for UP, Bihar, MP, and Haryana. Convert Bigha, Biswa, Kattha, Dhur, Gaj, Sq Feet, Dismil, and Acre.">
+  <title>Zameen Naap & Registry Kharcha Calculator (Bigha, Biswa, Kattha, Gaj, Sq Ft)</title>
+  <meta name="description" content="UP aur Bihar ke liye accurate zameen napne wala calculator. Bigha, Biswa, Kattha, Dhur, Gaj aur Square Feet me badle aur circle rate se registry kharcha nikalein.">
 
   <!-- Dynamic SVG Favicon -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230f172a' stroke='%2310b981' stroke-width='1.5'/%3E%3Cpath d='M7 23l6-13 6 8 6-11' stroke='%2338bdf8' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3Cpath d='M6 25h20' stroke='%2310b981' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E">
@@ -166,8 +166,9 @@
       font-size: 0.78rem;
       color: var(--primary);
       margin-bottom: 1.25rem;
+      line-height: 1.5;
     }
-    /* Conversion Results Grid */
+    /* Results Grid */
     .results-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -204,7 +205,7 @@
       color: var(--muted);
       margin-top: 2px;
     }
-    /* Registry Valuation Box */
+    /* Registry Calculation Card */
     .calc-result-box {
       background: linear-gradient(145deg, rgba(16, 185, 129, 0.12), rgba(56, 189, 248, 0.05));
       border: 1px solid rgba(16, 185, 129, 0.35);
@@ -310,7 +311,7 @@
       </a>
     </div>
     <div style="display:flex; align-items:center; gap:12px; overflow-x:auto;">
-      <a href="https://unknownuniversem-blip.github.io/land-converter/" style="color:#10b981; text-decoration:none; font-weight:700; white-space:nowrap;">🌾 Land Converter</a>
+      <a href="https://unknownuniversem-blip.github.io/land-converter/" style="color:#10b981; text-decoration:none; font-weight:700; white-space:nowrap;">🌾 Zameen Converter</a>
       <span style="color:#334155;">|</span>
       <a href="https://unknownuniversem-blip.github.io/loan-emi-calculator/" style="color:#38bdf8; text-decoration:none; font-weight:600; white-space:nowrap;">💰 EMI Reducer</a>
       <span style="color:#334155;">|</span>
@@ -333,37 +334,37 @@
         <span class="brand-name">Bhumi<span style="color:#10b981;">Convert</span></span>
         <span class="brand-badge">UP & Bihar Standard</span>
       </div>
-      <h1>Land Area & Registry Cost Converter</h1>
-      <p>Convert Bigha, Biswa, Kattha, Dhur, Gaj, and Sq. Feet according to your tehsil/state standard, and estimate circle rate valuation.</p>
+      <h1>Zameen Naap & Registry Kharcha Calculator</h1>
+      <p>Apni tehsil ya zila ke hisaab se Bigha, Biswa, Kattha, Dhur aur Gaj ko Square Feet me badle aur Registry ka kharcha check karein.</p>
     </header>
 
     <div class="grid-layout">
       <!-- CONVERTER SECTION -->
       <div>
         <div class="card">
-          <div class="card-title">1. Select Standard & Input Area</div>
-          <div class="card-subtitle">Local land measurements vary by state & tehsil</div>
+          <div class="card-title">1. Apna Area / Zila Chunein & Value Dalein</div>
+          <div class="card-subtitle">Har tehsil me bigha aur biswa ka size alag hota hai</div>
 
-          <label>Select Regional Standard / State</label>
+          <label>Kahan Ki Zameen Hai? (State / Tehsil Standard)</label>
           <select id="selStandard" style="margin-bottom:1rem;" onchange="updateStandardInfo()">
-            <option value="up_east" selected>UP Eastern / Gorakhpur / Varanasi (Pucca Bigha = 27,225 sq ft / 3,000 Gaj)</option>
-            <option value="bihar_std">Bihar Standard / Patna / Gaya (1 Bigha = 27,225 sq ft, 20 Kattha, 400 Dhur)</option>
-            <option value="up_west_kuccha">Western UP Kuccha Bigha (1 Bigha = 9,075 sq ft / 1,000 Gaj)</option>
-            <option value="up_west_small">Western UP Small Bigha (1 Bigha = 6,806.25 sq ft / 756 Gaj)</option>
-            <option value="haryana_punjab">Haryana / Punjab (1 Bigha = 9,075 sq ft, 1 Killa = 43,560 sq ft)</option>
+            <option value="up_east" selected>Purvanchal UP / Gorakhpur / Varanasi (Pakka Bigha = 27,225 Sq Ft / 3,025 Gaj)</option>
+            <option value="bihar_std">Bihar Standard / Patna / Gaya (1 Bigha = 20 Kattha, 400 Dhur, 27,225 Sq Ft)</option>
+            <option value="up_west_kuccha">Western UP Kachha Bigha (1 Bigha = 9,075 Sq Ft / 1,008 Gaj)</option>
+            <option value="up_west_small">Western UP Chhota Bigha (1 Bigha = 6,806.25 Sq Ft / 756 Gaj)</option>
+            <option value="haryana_punjab">Haryana / Punjab (1 Bigha = 9,075 Sq Ft, 1 Killa = 43,560 Sq Ft)</option>
           </select>
 
           <div class="region-banner" id="regionBanner">
-            📌 <strong>UP Eastern Standard:</strong> 1 Pucca Bigha = 20 Biswa = 27,225 Sq. Ft = 3,025 Sq. Yard (Gaj). 1 Biswa = 1,361.25 Sq. Ft.
+            📌 <strong>Purvanchal UP Standard:</strong> 1 Pakka Bigha = 20 Biswa = 27,225 Square Feet = 3,025 Gaj. 1 Biswa = 1,361.25 Sq. Ft.
           </div>
 
           <div class="input-row">
             <div>
-              <label>Enter Value</label>
+              <label>Kitna Area Hai? (Number Dalein)</label>
               <input type="number" id="inputVal" value="1" min="0" step="any" oninput="convertArea()">
             </div>
             <div>
-              <label>Input Unit</label>
+              <label>Ye Kis Unit Me Hai?</label>
               <select id="inputUnit" onchange="convertArea()">
                 <option value="bigha" selected>Bigha (बीघा)</option>
                 <option value="biswa">Biswa / Kattha (बिस्वा / कट्ठा)</option>
@@ -371,7 +372,7 @@
                 <option value="sqft">Square Feet (वर्ग फुट)</option>
                 <option value="gaj">Gaj / Sq. Yard (वर्ग गज)</option>
                 <option value="dismil">Dismil (डिसमिल)</option>
-                <option value="acre">Acre (एकड़)</option>
+                <option value="acre">Acre / Killa (एकड़ / किल्ला)</option>
                 <option value="hectare">Hectare (हेक्टेयर)</option>
               </select>
             </div>
@@ -380,34 +381,34 @@
 
         <!-- CONVERTED RESULTS TABLE -->
         <div class="card">
-          <div class="card-title" style="color:var(--accent);">2. Exact Converted Breakdown</div>
-          <div class="card-subtitle">Real-time conversions in government registry and local units</div>
+          <div class="card-title" style="color:var(--accent);">2. Sabhi Units Me Sahi Naap</div>
+          <div class="card-subtitle">Khatoni, registry aur plotting ke hisaab se converted details</div>
 
           <div class="results-grid">
             <div class="res-card highlight">
               <span class="res-unit">Square Feet (वर्ग फुट)</span>
               <span class="res-val" id="resSqft">27,225</span>
-              <span class="res-sub">Registry Standard</span>
+              <span class="res-sub">Registry office standard</span>
             </div>
             <div class="res-card highlight">
-              <span class="res-unit">Gaj / Sq Yard (वर्ग गज)</span>
+              <span class="res-unit">Gaj / Sq. Yard (वर्ग गज)</span>
               <span class="res-val" id="resGaj">3,025</span>
-              <span class="res-sub">Plotting Unit</span>
+              <span class="res-sub">Plotting rate ke liye</span>
             </div>
             <div class="res-card">
               <span class="res-unit" id="lblSubBigha">Biswa / Kattha</span>
               <span class="res-val" id="resBiswa">20.00</span>
-              <span class="res-sub">1 Bigha = 20 Biswa</span>
+              <span class="res-sub">1 Bigha = 20 Biswa/Kattha</span>
             </div>
             <div class="res-card">
               <span class="res-unit">Dhur (धुर)</span>
               <span class="res-val" id="resDhur">400.00</span>
-              <span class="res-sub">Smallest Local Unit</span>
+              <span class="res-sub">Sabse chhoti naap</span>
             </div>
             <div class="res-card">
               <span class="res-unit">Bigha (बीघा)</span>
               <span class="res-val" id="resBigha">1.000</span>
-              <span class="res-sub">Regional Base</span>
+              <span class="res-sub">Local kisan standard</span>
             </div>
             <div class="res-card">
               <span class="res-unit">Dismil (डिसमिल)</span>
@@ -415,14 +416,14 @@
               <span class="res-sub">1 Acre = 100 Dismil</span>
             </div>
             <div class="res-card">
-              <span class="res-unit">Acre (एकड़)</span>
+              <span class="res-unit">Acre / Killa (एकड़)</span>
               <span class="res-val" id="resAcre">0.625</span>
-              <span class="res-sub">43,560 Sq Ft</span>
+              <span class="res-sub">43,560 Square Feet</span>
             </div>
             <div class="res-card">
               <span class="res-unit">Hectare (हेक्टेयर)</span>
               <span class="res-val" id="resHectare">0.253</span>
-              <span class="res-sub">107,639 Sq Ft</span>
+              <span class="res-sub">Khatoni me likha hota hai</span>
             </div>
           </div>
         </div>
@@ -431,43 +432,43 @@
       <!-- REGISTRY & CIRCLE RATE CALCULATOR -->
       <div class="sticky-pane">
         <div class="card">
-          <div class="card-title" style="color:var(--primary);">3. Registry & Circle Rate Valuation</div>
-          <div class="card-subtitle">Calculate total valuation and estimated stamp duty</div>
+          <div class="card-title" style="color:var(--primary);">3. Registry & Circle Rate Ka Kharcha</div>
+          <div class="card-subtitle">Stamp duty aur registration fees ka anumaan lagayein</div>
 
-          <label>Circle Rate / Market Rate</label>
+          <label>Circle Rate / Zameen Ka Rate Dalein</label>
           <div style="display:grid; grid-template-columns:1.2fr 1fr; gap:10px; margin-bottom:1rem;">
             <input type="number" id="inputRate" value="1200" min="0" step="10" oninput="calcRegistry()">
             <select id="rateUnit" onchange="calcRegistry()">
-              <option value="per_sqft" selected>per Sq. Feet</option>
-              <option value="per_gaj">per Gaj (Sq Yard)</option>
-              <option value="per_bigha">per Bigha</option>
+              <option value="per_sqft" selected>per Square Feet</option>
+              <option value="per_gaj">per Gaj (वर्ग गज)</option>
+              <option value="per_bigha">per Bigha (बीघा)</option>
             </select>
           </div>
 
-          <label>Estimated Stamp Duty Rate (%)</label>
+          <label>Stamp Duty Kitna Lagta Hai?</label>
           <select id="stampPercent" style="margin-bottom:1.25rem;" onchange="calcRegistry()">
-            <option value="7" selected>7% (Standard Male Buyer in UP)</option>
-            <option value="6">6% (Female Buyer in UP - 1% Rebate)</option>
-            <option value="6.5">6.5% (Bihar Standard)</option>
-            <option value="5">5% (General / Other State)</option>
+            <option value="7" selected>7% (UP me Purush / Male Buyer)</option>
+            <option value="6">6% (UP me Mahila / Female Buyer - 1% Chhoot)</option>
+            <option value="6.5">6.5% (Bihar Standard Stamp Duty)</option>
+            <option value="5">5% (General / Other States)</option>
           </select>
 
           <div class="calc-result-box">
-            <div class="calc-result-label">Total Land Valuation</div>
+            <div class="calc-result-label">Kul Sarkari Valuation (Zameen Ki Keemat)</div>
             <div class="calc-result-val" id="resTotalValuation">₹3,26,70,000</div>
           </div>
 
           <div class="calc-stamp-box">
-            <span>Estimated Stamp Duty:</span>
+            <span>Stamp Paper Ka Kharcha (Stamp Duty):</span>
             <strong id="resStampDuty" style="color:var(--accent); font-size:1rem;">₹22,86,900</strong>
           </div>
 
           <div class="calc-stamp-box" style="margin-top:6px;">
-            <span>Estimated Registration Fee (1%):</span>
+            <span>Registry Fee (1% Nibandhan Shulk):</span>
             <strong id="resRegFee" style="color:var(--primary); font-size:1rem;">₹3,26,700</strong>
           </div>
 
-          <button class="btn-action" style="margin-top:1.2rem;" onclick="shareCalculation()">💬 Share Breakdown on WhatsApp</button>
+          <button class="btn-action" style="margin-top:1.2rem;" onclick="shareCalculation()">💬 WhatsApp Par Share Karein</button>
         </div>
       </div>
     </div>
@@ -475,46 +476,45 @@
     <!-- ZERO STORAGE BANNER -->
     <div style="display:flex; align-items:center; gap:10px; background:rgba(16,185,129,0.08); border:1px solid rgba(16,185,129,0.25); border-radius:8px; padding:10px 14px; margin-top:1.5rem;">
       <span style="font-size:1.2rem;">🔒</span>
-      <span style="font-size:0.75rem; color:var(--muted);">100% Client-Side. No property details or calculations are stored on any server.</span>
+      <span style="font-size:0.75rem; color:var(--muted);">100% Private & Safe: Aapka koi bhi zameen ka hisaab ya mobile number kisi server par save nahi hota.</span>
     </div>
 
     <!-- ECOSYSTEM CROSS-PROMOTION -->
     <div class="ecosystem-section">
-      <h3>More Zero-Cost Client-Side Utilities</h3>
-      <p>Discover fast, ad-free offline web tools built for speed and privacy.</p>
+      <h3>QuickTools Ke Aur Kaam Ke Free Tools</h3>
+      <p>Bina kisi ad ya server load ke seedhe browser me chalne wale fast tools.</p>
       <div class="eco-grid">
         <a href="https://unknownuniversem-blip.github.io/loan-emi-calculator/" class="eco-card">
           <strong>💰 Loan EMI & Prepayment Reducer</strong>
-          <span>Calculate home/car loan EMI, 0% No Cost EMI & interest savings.</span>
+          <span>Home loan, car loan ya 0% No Cost EMI ka hisaab aur byaj bachat calculator.</span>
         </a>
         <a href="https://unknownuniversem-blip.github.io/wa-direct/" class="eco-card">
           <strong>💬 Direct WhatsApp Chat</strong>
-          <span>Message unsaved numbers without saving contacts + broadcast queue.</span>
+          <span>Bina number save kiye WhatsApp message bhejein aur ek sath kayi logo ko broadcast karein.</span>
         </a>
         <a href="https://unknownuniversem-blip.github.io/exam-resizer/" class="eco-card">
           <strong>📷 Exam Photo Resizer</strong>
-          <span>NEET, JEE, SSC & UPSC exact cm/pixel resizer & KB compressor.</span>
+          <span>Sarkari naukri (SSC, UPSC, NEET, Police) ke liye photo aur signature 20-50 KB me set karein.</span>
         </a>
         <a href="https://unknownuniversem-blip.github.io/typing-speed-finger-test/" class="eco-card">
           <strong>⌨ Typing Speed Master</strong>
-          <span>Practice typing speed & accuracy test for government exams.</span>
+          <span>SSC CGL/CHSL exam ke liye typing speed aur accuracy live test karein.</span>
         </a>
       </div>
     </div>
 
     <footer>
-      <div>QuickTools Network &copy; 2026. Free, client-side, open-source productivity utilities.</div>
+      <div>QuickTools Network &copy; 2026. 100% Free, Client-side Utility Platform.</div>
     </footer>
   </div>
 
   <script>
-    // Standard Configs (sqft per bigha)
     const standards = {
       up_east: {
         bigha_sqft: 27225,
         sub_unit: 'Biswa',
         biswa_per_bigha: 20,
-        desc: '📌 <strong>UP Eastern Standard:</strong> 1 Pucca Bigha = 20 Biswa = 27,225 Sq. Ft = 3,025 Sq. Yard (Gaj). 1 Biswa = 1,361.25 Sq. Ft.'
+        desc: '📌 <strong>Purvanchal UP Standard:</strong> 1 Pakka Bigha = 20 Biswa = 27,225 Sq. Ft = 3,025 Gaj. 1 Biswa = 1,361.25 Sq. Ft = 20 Dhur.'
       },
       bihar_std: {
         bigha_sqft: 27225,
@@ -526,19 +526,19 @@
         bigha_sqft: 9075,
         sub_unit: 'Biswa',
         biswa_per_bigha: 20,
-        desc: '📌 <strong>Western UP Kuccha Bigha:</strong> 1 Bigha = 9,075 Sq. Ft = 1,008.3 Gaj. 1 Biswa = 453.75 Sq. Ft.'
+        desc: '📌 <strong>Western UP Kachha Bigha:</strong> 1 Bigha = 9,075 Sq. Ft = 1,008.3 Gaj. 1 Biswa = 453.75 Sq. Ft.'
       },
       up_west_small: {
         bigha_sqft: 6806.25,
         sub_unit: 'Biswa',
         biswa_per_bigha: 20,
-        desc: '📌 <strong>Western UP Small Bigha:</strong> 1 Bigha = 6,806.25 Sq. Ft = 756.25 Gaj. 1 Biswa = 340.31 Sq. Ft.'
+        desc: '📌 <strong>Western UP Chhota Bigha:</strong> 1 Bigha = 6,806.25 Sq. Ft = 756.25 Gaj. 1 Biswa = 340.31 Sq. Ft.'
       },
       haryana_punjab: {
         bigha_sqft: 9075,
         sub_unit: 'Biswa',
         biswa_per_bigha: 20,
-        desc: '📌 <strong>Haryana / Punjab:</strong> 1 Bigha = 9,075 Sq. Ft. 1 Killa / Acre = 43,560 Sq. Ft = 4.8 Bigha.'
+        desc: '📌 <strong>Haryana / Punjab Standard:</strong> 1 Bigha = 9,075 Sq. Ft. 1 Killa / Acre = 43,560 Sq. Ft = 4.8 Bigha.'
       }
     };
 
@@ -547,12 +547,6 @@
     window.addEventListener('DOMContentLoaded', () => {
       updateStandardInfo();
     });
-
-    function formatNumber(val, decimals = 2) {
-      if (val >= 10000000) return (val / 10000000).toFixed(2) + ' Cr';
-      if (val >= 100000) return (val / 100000).toFixed(2) + ' L';
-      return Number(val.toFixed(decimals)).toLocaleString('en-IN');
-    }
 
     function formatInr(val) {
       return '₹' + Math.round(val).toLocaleString('en-IN');
@@ -572,7 +566,7 @@
       const val = parseFloat(document.getElementById('inputVal').value) || 0;
       const unit = document.getElementById('inputUnit').value;
 
-      // 1. Convert input to normalized Square Feet
+      // 1. Normalization into Sq. Ft
       let sqft = 0;
       if (unit === 'sqft') sqft = val;
       else if (unit === 'gaj') sqft = val * 9;
@@ -585,7 +579,7 @@
 
       totalCalculatedSqft = sqft;
 
-      // 2. Convert normalized Sq Ft into all target units
+      // 2. Conversion across all units
       const gaj = sqft / 9;
       const bigha = sqft / std.bigha_sqft;
       const biswa = bigha * std.biswa_per_bigha;
@@ -622,7 +616,7 @@
       }
 
       const stampDuty = (valuation * stampPct) / 100;
-      const regFee = (valuation * 1) / 100; // Standard 1% registration charges
+      const regFee = (valuation * 1) / 100;
 
       document.getElementById('resTotalValuation').innerText = formatInr(valuation);
       document.getElementById('resStampDuty').innerText = formatInr(stampDuty);
@@ -636,8 +630,9 @@
       const gaj = document.getElementById('resGaj').innerText;
       const bigha = document.getElementById('resBigha').innerText;
       const valuation = document.getElementById('resTotalValuation').innerText;
+      const stamp = document.getElementById('resStampDuty').innerText;
 
-      const text = encodeURIComponent(`🌾 Land Area Conversion & Registry Breakdown:\nInput: ${val} ${unit}\n= ${sqft} Sq. Ft\n= ${gaj} Gaj (Sq. Yard)\n= ${bigha} Bigha\nTotal Valuation: ${valuation}\n\nCalculate instantly: ` + window.location.href);
+      const text = encodeURIComponent(`🌾 Zameen Naap & Registry Kharcha Details:\nArea: ${val} ${unit}\n= ${sqft} Square Feet\n= ${gaj} Gaj (वर्ग गज)\n= ${bigha} Bigha (बीघा)\n\nSarkari Valuation: ${valuation}\nAnumanit Stamp Duty: ${stamp}\n\nSeedhe check karein: ` + window.location.href);
       window.open(`https://api.whatsapp.com/send?text=${text}`, '_blank');
     }
   </script>
