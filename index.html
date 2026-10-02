@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-  <title>Zameen Naap & Registry Kharcha Calculator (Bigha, Biswa, Kattha, Gaj, Sq Ft)</title>
-  <meta name="description" content="UP aur Bihar ke liye accurate zameen napne wala calculator. Bigha, Biswa, Kattha, Dhur, Gaj aur Square Feet me badle aur circle rate se registry kharcha nikalein.">
+  <title>जमीन नाप और रजिस्ट्री खर्च कैलकुलेटर (Bigha, Biswa, Kattha, Gaj, Sq Ft)</title>
+  <meta name="description" content="यूपी और बिहार जमीन नाप कैलकुलेटर। बीघा, बिस्वा, कट्ठा, धुर, गज और वर्ग फुट को आपस में बदलें एवं सरकारी सर्किल रेट से रजिस्ट्री खर्च निकालें।">
 
   <!-- Dynamic SVG Favicon -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230f172a' stroke='%2310b981' stroke-width='1.5'/%3E%3Cpath d='M7 23l6-13 6 8 6-11' stroke='%2338bdf8' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3Cpath d='M6 25h20' stroke='%2310b981' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E">
@@ -28,7 +28,7 @@
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans Devanagari", sans-serif;
       word-break: break-word;
       overflow-wrap: anywhere;
     }
@@ -70,9 +70,9 @@
       background: rgba(16, 185, 129, 0.15);
       color: var(--accent);
       border: 1px solid rgba(16, 185, 129, 0.3);
-      font-size: 0.65rem;
+      font-size: 0.68rem;
       font-weight: 700;
-      padding: 2px 8px;
+      padding: 3px 10px;
       border-radius: 9999px;
       text-transform: uppercase;
     }
@@ -85,7 +85,7 @@
     header p {
       color: var(--muted);
       font-size: clamp(0.85rem, 2vw, 0.95rem);
-      max-width: 650px;
+      max-width: 700px;
       margin: 0 auto;
     }
     .grid-layout {
@@ -126,11 +126,10 @@
     }
     label {
       display: block;
-      font-size: 0.78rem;
+      font-size: 0.8rem;
       font-weight: 700;
       color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.02em;
       margin-bottom: 6px;
     }
     select, input[type="number"] {
@@ -149,7 +148,7 @@
     }
     .input-row {
       display: grid;
-      grid-template-columns: 1.2fr 1fr;
+      grid-template-columns: 1.15fr 1fr;
       gap: 10px;
       margin-bottom: 1.25rem;
     }
@@ -162,11 +161,11 @@
       background: rgba(56, 189, 248, 0.08);
       border: 1px solid rgba(56, 189, 248, 0.25);
       border-radius: 8px;
-      padding: 10px 12px;
-      font-size: 0.78rem;
+      padding: 11px 13px;
+      font-size: 0.82rem;
       color: var(--primary);
       margin-bottom: 1.25rem;
-      line-height: 1.5;
+      line-height: 1.6;
     }
     
     /* CLICKABLE INTERACTIVE RESULTS CARDS */
@@ -207,21 +206,20 @@
       right: 8px;
       font-size: 0.65rem;
       color: var(--muted);
-      opacity: 0.7;
+      opacity: 0.75;
     }
     .res-card:hover .copy-tag {
       color: var(--accent);
       opacity: 1;
     }
     .res-unit {
-      font-size: 0.75rem;
+      font-size: 0.8rem;
       color: var(--muted);
-      text-transform: uppercase;
       font-weight: 700;
       margin-bottom: 4px;
     }
     .res-val {
-      font-size: 1.15rem;
+      font-size: 1.2rem;
       font-weight: 800;
       color: #fff;
       font-family: monospace;
@@ -245,9 +243,8 @@
       margin-bottom: 1.25rem;
     }
     .calc-result-label {
-      font-size: 0.8rem;
+      font-size: 0.82rem;
       color: var(--muted);
-      text-transform: uppercase;
       font-weight: 700;
       margin-bottom: 4px;
     }
@@ -265,7 +262,7 @@
       border-radius: 8px;
       padding: 10px 14px;
       margin-top: 10px;
-      font-size: 0.82rem;
+      font-size: 0.85rem;
     }
     .btn-action {
       display: block;
@@ -283,10 +280,10 @@
     }
     .btn-action:hover { background: var(--accent-hover); }
 
-    /* Toast */
+    /* Toast Notification */
     #toast {
       visibility: hidden;
-      min-width: 220px;
+      min-width: 240px;
       background-color: var(--accent);
       color: #052e16;
       text-align: center;
@@ -298,7 +295,7 @@
       left: 50%;
       transform: translateX(-50%);
       font-weight: 700;
-      font-size: 0.82rem;
+      font-size: 0.85rem;
     }
     #toast.show {
       visibility: visible;
@@ -366,15 +363,15 @@
       </a>
     </div>
     <div style="display:flex; align-items:center; gap:12px; overflow-x:auto;">
-      <a href="https://unknownuniversem-blip.github.io/land-converter/" style="color:#10b981; text-decoration:none; font-weight:700; white-space:nowrap;">🌾 Zameen Converter</a>
+      <a href="https://unknownuniversem-blip.github.io/land-converter/" style="color:#10b981; text-decoration:none; font-weight:700; white-space:nowrap;">🌾 जमीन नाप / Land</a>
       <span style="color:#334155;">|</span>
-      <a href="https://unknownuniversem-blip.github.io/loan-emi-calculator/" style="color:#38bdf8; text-decoration:none; font-weight:600; white-space:nowrap;">💰 EMI Reducer</a>
+      <a href="https://unknownuniversem-blip.github.io/loan-emi-calculator/" style="color:#38bdf8; text-decoration:none; font-weight:600; white-space:nowrap;">💰 EMI कैलकुलेटर</a>
       <span style="color:#334155;">|</span>
-      <a href="https://unknownuniversem-blip.github.io/wa-direct/" style="color:#94a3b8; text-decoration:none; font-weight:600; white-space:nowrap;">💬 WA Direct</a>
+      <a href="https://unknownuniversem-blip.github.io/wa-direct/" style="color:#94a3b8; text-decoration:none; font-weight:600; white-space:nowrap;">💬 WhatsApp Direct</a>
       <span style="color:#334155;">|</span>
-      <a href="https://unknownuniversem-blip.github.io/exam-resizer/" style="color:#94a3b8; text-decoration:none; font-weight:600; white-space:nowrap;">📷 Exam Resizer</a>
+      <a href="https://unknownuniversem-blip.github.io/exam-resizer/" style="color:#94a3b8; text-decoration:none; font-weight:600; white-space:nowrap;">📷 फोटो रिसाइजर</a>
       <span style="color:#334155;">|</span>
-      <a href="https://unknownuniversem-blip.github.io/typing-speed-finger-test/" style="color:#94a3b8; text-decoration:none; font-weight:600; white-space:nowrap;">⌨ Typing Test</a>
+      <a href="https://unknownuniversem-blip.github.io/typing-speed-finger-test/" style="color:#94a3b8; text-decoration:none; font-weight:600; white-space:nowrap;">⌨ टाइपिंग टेस्ट</a>
     </div>
   </div>
 
@@ -386,118 +383,118 @@
           <path d="M7 23l6-13 6 8 6-11" stroke="#38bdf8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
           <path d="M6 25h20" stroke="#10b981" stroke-width="2" stroke-linecap="round"/>
         </svg>
-        <span class="brand-name">Bhumi<span style="color:#10b981;">Convert</span></span>
-        <span class="brand-badge">UP & Bihar Standard</span>
+        <span class="brand-name">भूमि<span style="color:#10b981;">Convert</span></span>
+        <span class="brand-badge">UP & बिहार मानक</span>
       </div>
-      <h1>Zameen Naap & Registry Kharcha Calculator</h1>
-      <p>Bigha, Biswa, Kattha, Dhur aur Gaj ko Square Feet me badle aur Registry ka kharcha check karein.</p>
+      <h1>जमीन नाप और रजिस्ट्री खर्च कैलकुलेटर</h1>
+      <p>अपनी तहसील व जिले के हिसाब से बीघा (Bigha), बिस्वा / कट्ठा (Biswa/Kattha), धुर (Dhur) और वर्ग गज (Gaj) को वर्ग फुट में बदलें और रजिस्ट्री का खर्च निकालें।</p>
     </header>
 
     <div class="grid-layout">
       <!-- CONVERTER SECTION -->
       <div>
         <div class="card">
-          <div class="card-title">1. Apna Area / Zila Chunein & Value Dalein</div>
-          <div class="card-subtitle">Har tehsil me bigha aur biswa ka size alag hota hai</div>
+          <div class="card-title">1. जमीन का क्षेत्र चुनें और नाप डालें (Input Area)</div>
+          <div class="card-subtitle">हर तहसील में बीघा और बिस्वा का पैमाना अलग होता है:</div>
 
-          <label>Kahan Ki Zameen Hai? (State / Tehsil Standard)</label>
+          <label>जमीन किस क्षेत्र की है? (State / Tehsil Standard)</label>
           <select id="selStandard" style="margin-bottom:1rem;" onchange="updateStandardInfo()">
-            <option value="up_east" selected>Purvanchal UP / Gorakhpur / Varanasi (Pakka Bigha = 27,225 Sq Ft / 3,025 Gaj)</option>
-            <option value="bihar_std">Bihar Standard / Patna / Gaya (1 Bigha = 20 Kattha, 400 Dhur, 27,225 Sq Ft)</option>
-            <option value="up_west_kuccha">Western UP Kachha Bigha (1 Bigha = 9,075 Sq Ft / 1,008 Gaj)</option>
-            <option value="up_west_small">Western UP Chhota Bigha (1 Bigha = 6,806.25 Sq Ft / 756 Gaj)</option>
-            <option value="haryana_punjab">Haryana / Punjab (1 Bigha = 9,075 Sq Ft, 1 Killa = 43,560 Sq Ft)</option>
+            <option value="up_east" selected>पूर्वांचल UP / गोरखपुर, वाराणसी, आजमगढ़ (पक्का बीघा = 27,225 वर्ग फुट / 3,025 गज)</option>
+            <option value="bihar_std">बिहार मानक / पटना, गया, मुजफ्फरपुर (1 बीघा = 20 कट्ठा = 400 धुर = 27,225 वर्ग फुट)</option>
+            <option value="up_west_kuccha">पश्चिमी UP कच्चा बीघा (1 बीघा = 9,075 वर्ग फुट / 1,008 वर्ग गज)</option>
+            <option value="up_west_small">पश्चिमी UP छोटा बीघा (1 बीघा = 6,806.25 वर्ग फुट / 756 वर्ग गज)</option>
+            <option value="haryana_punjab">हरियाणा / पंजाब मानक (1 बीघा = 9,075 वर्ग फुट, 1 किल्ला/एकड़ = 43,560 वर्ग फुट)</option>
           </select>
 
           <div class="region-banner" id="regionBanner">
-            📌 <strong>Purvanchal UP Standard:</strong> 1 Pakka Bigha = 20 Biswa = 27,225 Square Feet = 3,025 Gaj. 1 Biswa = 1,361.25 Sq. Ft.
+            📌 <strong>पूर्वांचल UP मानक:</strong> 1 पक्का बीघा = 20 बिस्वा = 27,225 वर्ग फुट (Sq. Ft) = 3,025 वर्ग गज (Gaj)। 1 बिस्वा = 1,361.25 वर्ग फुट = 20 धुर।
           </div>
 
           <div class="input-row">
             <div>
-              <label>Kitna Area Hai? (Number Dalein)</label>
+              <label>कितना रकबा / एरिया है? (Value)</label>
               <input type="number" id="inputVal" value="1" min="0" step="any" oninput="convertArea()">
             </div>
             <div>
-              <label>Ye Kis Unit Me Hai?</label>
+              <label>यह किस इकाई / यूनिट में है?</label>
               <select id="inputUnit" onchange="convertArea()">
-                <option value="bigha" selected>Bigha (बीघा)</option>
-                <option value="biswa">Biswa / Kattha (बिस्वा / कट्ठा)</option>
-                <option value="dhur">Dhur (धुर)</option>
-                <option value="sqft">Square Feet (वर्ग फुट)</option>
-                <option value="gaj">Gaj / Sq. Yard (वर्ग गज)</option>
-                <option value="dismil">Dismil (डिसमिल)</option>
-                <option value="acre">Acre / Killa (एकड़ / किल्ला)</option>
-                <option value="hectare">Hectare (हेक्टेयर)</option>
+                <option value="bigha" selected>बीघा (Bigha)</option>
+                <option value="biswa">बिस्वा / कट्ठा (Biswa / Kattha)</option>
+                <option value="dhur">धुर (Dhur)</option>
+                <option value="sqft">वर्ग फुट (Square Feet)</option>
+                <option value="gaj">वर्ग गज (Gaj / Sq. Yard)</option>
+                <option value="dismil">डिसमिल (Dismil)</option>
+                <option value="acre">एकड़ / किल्ला (Acre)</option>
+                <option value="hectare">हेक्टेयर (Hectare - खतौनी)</option>
               </select>
             </div>
           </div>
         </div>
 
-        <!-- CONVERTED RESULTS TABLE (NOW FULLY CLICKABLE & SELECTABLE) -->
+        <!-- CONVERTED RESULTS TABLE -->
         <div class="card">
           <div class="card-title" style="color:var(--accent);">
-            <span>2. Sabhi Units Me Sahi Naap</span>
-            <span style="font-size:0.7rem; font-weight:600; color:var(--muted); margin-left:auto;">(Kisi bhi card par click karke copy ya select karein)</span>
+            <span>2. सभी इकाइयों में सही नाप (Converted Units)</span>
+            <span style="font-size:0.72rem; font-weight:600; color:var(--muted); margin-left:auto;">(किसी भी कार्ड पर क्लिक करके सेलेक्ट या कॉपी करें)</span>
           </div>
-          <div class="card-subtitle">Khatoni, registry aur plotting ke hisaab se converted details:</div>
+          <div class="card-subtitle">खतौनी, बैनामा (रजिस्ट्री) और प्लॉटिंग के हिसाब से नाप:</div>
 
           <div class="results-grid">
             
             <div class="res-card" id="card_sqft" onclick="selectUnitFromCard('sqft')">
               <span class="copy-tag">📋 Tap to select</span>
-              <span class="res-unit">Square Feet (वर्ग फुट)</span>
+              <span class="res-unit">वर्ग फुट (Square Feet)</span>
               <span class="res-val" id="resSqft">27,225</span>
-              <span class="res-sub"><span>Registry standard</span><span>⚡ Select</span></span>
+              <span class="res-sub"><span>रजिस्ट्री मानक (Registry standard)</span><span>⚡ सेलेक्ट</span></span>
             </div>
 
             <div class="res-card" id="card_gaj" onclick="selectUnitFromCard('gaj')">
               <span class="copy-tag">📋 Tap to select</span>
-              <span class="res-unit">Gaj / Sq. Yard (वर्ग गज)</span>
+              <span class="res-unit">वर्ग गज (Gaj / Sq. Yard)</span>
               <span class="res-val" id="resGaj">3,025</span>
-              <span class="res-sub"><span>Plotting rate ke liye</span><span>⚡ Select</span></span>
+              <span class="res-sub"><span>प्लॉटिंग दर (Plotting unit)</span><span>⚡ सेलेक्ट</span></span>
             </div>
 
             <div class="res-card" id="card_biswa" onclick="selectUnitFromCard('biswa')">
               <span class="copy-tag">📋 Tap to select</span>
-              <span class="res-unit" id="lblSubBigha">Biswa / Kattha</span>
+              <span class="res-unit" id="lblSubBigha">बिस्वा / कट्ठा (Biswa / Kattha)</span>
               <span class="res-val" id="resBiswa">20.00</span>
-              <span class="res-sub"><span>1 Bigha = 20 Biswa</span><span>⚡ Select</span></span>
+              <span class="res-sub"><span>1 बीघा = 20 बिस्वा/कट्ठा</span><span>⚡ सेलेक्ट</span></span>
             </div>
 
             <div class="res-card" id="card_dhur" onclick="selectUnitFromCard('dhur')">
               <span class="copy-tag">📋 Tap to select</span>
-              <span class="res-unit">Dhur (धुर)</span>
+              <span class="res-unit">धुर (Dhur)</span>
               <span class="res-val" id="resDhur">400.00</span>
-              <span class="res-sub"><span>Sabse chhoti naap</span><span>⚡ Select</span></span>
+              <span class="res-sub"><span>सबसे छोटी क्षेत्रीय इकाई</span><span>⚡ सेलेक्ट</span></span>
             </div>
 
             <div class="res-card active-selected" id="card_bigha" onclick="selectUnitFromCard('bigha')">
               <span class="copy-tag">📋 Tap to select</span>
-              <span class="res-unit">Bigha (बीघा)</span>
+              <span class="res-unit">बीघा (Bigha)</span>
               <span class="res-val" id="resBigha">1.000</span>
-              <span class="res-sub"><span>Local kisan standard</span><span>⚡ Active</span></span>
+              <span class="res-sub"><span>स्थानीय किसान मानक</span><span>⚡ एक्टिव</span></span>
             </div>
 
             <div class="res-card" id="card_dismil" onclick="selectUnitFromCard('dismil')">
               <span class="copy-tag">📋 Tap to select</span>
-              <span class="res-unit">Dismil (डिसमिल)</span>
+              <span class="res-unit">डिसमिल (Dismil)</span>
               <span class="res-val" id="resDismil">62.50</span>
-              <span class="res-sub"><span>1 Acre = 100 Dismil</span><span>⚡ Select</span></span>
+              <span class="res-sub"><span>1 एकड़ = 100 डिसमिल</span><span>⚡ सेलेक्ट</span></span>
             </div>
 
             <div class="res-card" id="card_acre" onclick="selectUnitFromCard('acre')">
               <span class="copy-tag">📋 Tap to select</span>
-              <span class="res-unit">Acre / Killa (एकड़)</span>
+              <span class="res-unit">एकड़ / किल्ला (Acre)</span>
               <span class="res-val" id="resAcre">0.625</span>
-              <span class="res-sub"><span>43,560 Sq Feet</span><span>⚡ Select</span></span>
+              <span class="res-sub"><span>43,560 वर्ग फुट</span><span>⚡ सेलेक्ट</span></span>
             </div>
 
             <div class="res-card" id="card_hectare" onclick="selectUnitFromCard('hectare')">
               <span class="copy-tag">📋 Tap to select</span>
-              <span class="res-unit">Hectare (हेक्टेयर)</span>
+              <span class="res-unit">हेक्टेयर (Hectare)</span>
               <span class="res-val" id="resHectare">0.253</span>
-              <span class="res-sub"><span>Khatoni me likha hota hai</span><span>⚡ Select</span></span>
+              <span class="res-sub"><span>सरकारी खतौनी में दर्ज</span><span>⚡ सेलेक्ट</span></span>
             </div>
 
           </div>
@@ -507,43 +504,43 @@
       <!-- REGISTRY & CIRCLE RATE CALCULATOR -->
       <div class="sticky-pane">
         <div class="card">
-          <div class="card-title" style="color:var(--primary);">3. Registry & Circle Rate Ka Kharcha</div>
-          <div class="card-subtitle">Stamp duty aur registration fees ka anumaan lagayein</div>
+          <div class="card-title" style="color:var(--primary);">3. सर्किल रेट एवं रजिस्ट्री का खर्च (Valuation)</div>
+          <div class="card-subtitle">स्टाम्प ड्यूटी और निबंधन शुल्क का सही अनुमान लगाएं:</div>
 
-          <label>Circle Rate / Zameen Ka Rate Dalein</label>
-          <div style="display:grid; grid-template-columns:1.2fr 1fr; gap:10px; margin-bottom:1rem;">
+          <label>सर्किल रेट या जमीन का तय रेट डालें</label>
+          <div style="display:grid; grid-template-columns:1.15fr 1fr; gap:10px; margin-bottom:1rem;">
             <input type="number" id="inputRate" value="1200" min="0" step="10" oninput="calcRegistry()">
             <select id="rateUnit" onchange="calcRegistry()">
-              <option value="per_sqft" selected>per Square Feet</option>
-              <option value="per_gaj">per Gaj (वर्ग गज)</option>
-              <option value="per_bigha">per Bigha (बीघा)</option>
+              <option value="per_sqft" selected>प्रति वर्ग फुट (per Sq Ft)</option>
+              <option value="per_gaj">प्रति वर्ग गज (per Gaj)</option>
+              <option value="per_bigha">प्रति बीघा (per Bigha)</option>
             </select>
           </div>
 
-          <label>Stamp Duty Kitna Lagta Hai?</label>
+          <label>स्टाम्प शुल्क कितना लगेगा? (Stamp Duty Rate)</label>
           <select id="stampPercent" style="margin-bottom:1.25rem;" onchange="calcRegistry()">
-            <option value="7" selected>7% (UP me Purush / Male Buyer)</option>
-            <option value="6">6% (UP me Mahila / Female Buyer - 1% Chhoot)</option>
-            <option value="6.5">6.5% (Bihar Standard Stamp Duty)</option>
-            <option value="5">5% (General / Other States)</option>
+            <option value="7" selected>7% (UP में पुरुष खरीदार / Male Buyer)</option>
+            <option value="6">6% (UP में महिला खरीदार - 1% की छूट)</option>
+            <option value="6.5">6.5% (बिहार मानक स्टाम्प ड्यूटी)</option>
+            <option value="5">5% (अन्य राज्य / सामान्य दर)</option>
           </select>
 
           <div class="calc-result-box">
-            <div class="calc-result-label">Kul Sarkari Valuation (Zameen Ki Keemat)</div>
+            <div class="calc-result-label">कुल सरकारी मूल्यांकन (Total Land Valuation)</div>
             <div class="calc-result-val" id="resTotalValuation">₹3,26,70,000</div>
           </div>
 
           <div class="calc-stamp-box">
-            <span>Stamp Paper Ka Kharcha (Stamp Duty):</span>
-            <strong id="resStampDuty" style="color:var(--accent); font-size:1rem;">₹22,86,900</strong>
+            <span>स्टाम्प पेपर खर्च (Stamp Duty):</span>
+            <strong id="resStampDuty" style="color:var(--accent); font-size:1.05rem;">₹22,86,900</strong>
           </div>
 
           <div class="calc-stamp-box" style="margin-top:6px;">
-            <span>Registry Fee (1% Nibandhan Shulk):</span>
-            <strong id="resRegFee" style="color:var(--primary); font-size:1rem;">₹3,26,700</strong>
+            <span>रजिस्ट्री फीस (1% निबंधन शुल्क):</span>
+            <strong id="resRegFee" style="color:var(--primary); font-size:1.05rem;">₹3,26,700</strong>
           </div>
 
-          <button class="btn-action" style="margin-top:1.2rem;" onclick="shareCalculation()">💬 WhatsApp Par Share Karein</button>
+          <button class="btn-action" style="margin-top:1.2rem;" onclick="shareCalculation()">💬 WhatsApp पर हिसाब शेयर करें</button>
         </div>
       </div>
     </div>
@@ -551,71 +548,71 @@
     <!-- ZERO STORAGE BANNER -->
     <div style="display:flex; align-items:center; gap:10px; background:rgba(16,185,129,0.08); border:1px solid rgba(16,185,129,0.25); border-radius:8px; padding:10px 14px; margin-top:1.5rem;">
       <span style="font-size:1.2rem;">🔒</span>
-      <span style="font-size:0.75rem; color:var(--muted);">100% Private & Safe: Aapka koi bhi zameen ka hisaab ya mobile number kisi server par save nahi hota.</span>
+      <span style="font-size:0.78rem; color:var(--muted);">100% सुरक्षित (Zero Storage): आपका कोई भी जमीन का हिसाब या विवरण किसी भी सर्वर पर सेव नहीं होता।</span>
     </div>
 
     <!-- ECOSYSTEM CROSS-PROMOTION -->
     <div class="ecosystem-section">
-      <h3>QuickTools Ke Aur Kaam Ke Free Tools</h3>
-      <p>Bina kisi ad ya server load ke seedhe browser me chalne wale fast tools.</p>
+      <h3>QuickTools के अन्य उपयोगी टूल्स (Free Web Utilities)</h3>
+      <p>बिना किसी विज्ञापन या सर्वर लोड के सीधे ब्राउज़र में चलने वाले तेज टूल्स।</p>
       <div class="eco-grid">
         <a href="https://unknownuniversem-blip.github.io/loan-emi-calculator/" class="eco-card">
-          <strong>💰 Loan EMI & Prepayment Reducer</strong>
-          <span>Home loan, car loan ya 0% No Cost EMI ka hisaab aur byaj bachat calculator.</span>
+          <strong>💰 लोन EMI व ब्याज बचत कैलकुलेटर</strong>
+          <span>होम लोन, पर्सनल लोन या 0% No Cost EMI का हिसाब व प्रीपेमेंट से ब्याज बचत।</span>
         </a>
         <a href="https://unknownuniversem-blip.github.io/wa-direct/" class="eco-card">
-          <strong>💬 Direct WhatsApp Chat</strong>
-          <span>Bina number save kiye WhatsApp message bhejein aur ek sath kayi logo ko broadcast karein.</span>
+          <strong>💬 डायरेक्ट WhatsApp चैट</strong>
+          <span>बिना फोन में नंबर सेव किए सीधे WhatsApp पर चैट खोलें और सुरक्षित ब्रॉडकास्ट करें।</span>
         </a>
         <a href="https://unknownuniversem-blip.github.io/exam-resizer/" class="eco-card">
-          <strong>📷 Exam Photo Resizer</strong>
-          <span>Sarkari naukri (SSC, UPSC, NEET, Police) ke liye photo aur signature 20-50 KB me set karein.</span>
+          <strong>📷 सरकारी परीक्षा फोटो रिसाइजर</strong>
+          <span>SSC, UPSC, NEET, पुलिस भर्ती के लिए फोटो और साइन को 20-50 KB में सही सेट करें।</span>
         </a>
         <a href="https://unknownuniversem-blip.github.io/typing-speed-finger-test/" class="eco-card">
-          <strong>⌨ Typing Speed Master</strong>
-          <span>SSC CGL/CHSL exam ke liye typing speed aur accuracy live test karein.</span>
+          <strong>⌨ टाइपिंग स्पीड मास्टर</strong>
+          <span>सरकारी परीक्षाओं (SSC CGL/CHSL) के लिए लाइव टाइपिंग स्पीड व एक्यूरेसी टेस्ट करें।</span>
         </a>
       </div>
     </div>
 
     <footer>
-      <div>QuickTools Network &copy; 2026. 100% Free, Client-side Utility Platform.</div>
+      <div>QuickTools Network &copy; 2026. 100% Free Client-Side Utility Platform.</div>
     </footer>
   </div>
 
-  <div id="toast">Value copy ho gayi!</div>
+  <div id="toast">मान कॉपी हो गया! (Value Copied)</div>
 
   <script>
     const standards = {
       up_east: {
         bigha_sqft: 27225,
-        sub_unit: 'Biswa',
+        sub_unit: 'बिस्वा (Biswa)',
         biswa_per_bigha: 20,
-        desc: '📌 <strong>Purvanchal UP Standard:</strong> 1 Pakka Bigha = 20 Biswa = 27,225 Sq. Ft = 3,025 Gaj. 1 Biswa = 1,361.25 Sq. Ft = 20 Dhur.'
+        desc: '📌 <strong>पूर्वांचल UP मानक (गोरखपुर/वाराणसी):</strong> 1 पक्का बीघा = 20 बिस्वा = 27,225 वर्ग फुट = 3,025 वर्ग गज (Gaj)। 1 बिस्वा = 1,361.25 वर्ग फुट = 20 धुर।'
       },
       bihar_std: {
         bigha_sqft: 27225,
-        sub_unit: 'Kattha',
+        sub_unit: 'कट्ठा (Kattha)',
         biswa_per_bigha: 20,
-        desc: '📌 <strong>Bihar Standard:</strong> 1 Bigha = 20 Kattha = 400 Dhur = 27,225 Sq. Ft. 1 Kattha = 1,361.25 Sq. Ft = 20 Dhur. 1 Acre = 32 Kattha.'
+        desc: '📌 <strong>बिहार मानक (पटना/गया/मुजफ्फरपुर):</strong> 1 बीघा = 20 कट्ठा = 400 धुर = 27,225 वर्ग फुट। 1 कट्ठा = 1,361.25 वर्ग फुट = 20 धुर। 1 एकड़ = 32 कट्ठा।'
       },
       up_west_kuccha: {
         bigha_sqft: 9075,
-        sub_unit: 'Biswa',
+        sub_unit: 'बिस्वा (Biswa)',
         biswa_per_bigha: 20,
-        desc: '📌 <strong>Western UP Kachha Bigha:</strong> 1 Bigha = 9,075 Sq. Ft = 1,008.3 Gaj. 1 Biswa = 453.75 Sq. Ft.'
+        desc: '📌 <strong>पश्चिमी UP कच्चा बीघा:</strong> 1 बीघा = 9,075 वर्ग फुट = 1,008.3 वर्ग गज। 1 बिस्वा = 453.75 वर्ग फुट।'
       },
       up_west_small: {
         bigha_sqft: 6806.25,
-        sub_unit: 'Biswa',
+        sub_unit: 'बिस्वा (Biswa)',
         biswa_per_bigha: 20,
-        desc: '📌 <strong>Western UP Chhota Bigha:</strong> 1 Bigha = 6,806.25 Sq. Ft = 756.25 Gaj. 1 Biswa = 340.31 Sq. Ft.'
+        desc: '📌 <strong>पश्चिमी UP छोटा बीघा:</strong> 1 बीघा = 6,806.25 वर्ग फुट = 756.25 वर्ग गज। 1 बिस्वा = 340.31 वर्ग फुट।'
       },
       haryana_punjab: {
         bigha_sqft: 9075,
-        sub_unit: 'Biswa',
+        sub_unit: 'बिस्वा (Biswa)',
         biswa_per_bigha: 20,
-        desc: '📌 <strong>Haryana / Punjab Standard:</strong> 1 Bigha = 9,075 Sq. Ft. 1 Killa / Acre = 43,560 Sq. Ft = 4.8 Bigha.'
+        desc: '📌 <strong>हरियाणा व पंजाब मानक:</strong> 1 बीघा = 9,075 वर्ग फुट। 1 किल्ला / एकड़ = 43,560 वर्ग फुट = 4.8 बीघा।'
       }
     };
 
@@ -641,33 +638,28 @@
       const stdKey = document.getElementById('selStandard').value;
       const std = standards[stdKey];
       document.getElementById('regionBanner').innerHTML = std.desc;
-      document.getElementById('lblSubBigha').innerText = `${std.sub_unit} (${std.sub_unit === 'Kattha' ? 'कट्ठा' : 'बिस्वा'})`;
+      document.getElementById('lblSubBigha').innerText = `${std.sub_unit}`;
       convertArea();
     }
 
-    // FUNCTION TO SELECT UNIT BY CLICKING ITS CARD
     function selectUnitFromCard(unitKey) {
       const unitDropdown = document.getElementById('inputUnit');
       const inputValBox = document.getElementById('inputVal');
       
-      // Update dropdown
       unitDropdown.value = unitKey;
       
-      // Put the current converted value of that card into the main input
       if (currentRawConvertedValues[unitKey] !== undefined) {
         inputValBox.value = currentRawConvertedValues[unitKey];
       }
 
-      // Highlight the selected card
       highlightActiveCard(unitKey);
 
-      // Copy text to clipboard
       const cardEl = document.getElementById(`card_${unitKey}`);
       const valText = cardEl.querySelector('.res-val').innerText;
       const unitText = cardEl.querySelector('.res-unit').innerText;
       navigator.clipboard.writeText(`${valText} ${unitText}`).catch(() => {});
 
-      showToast(`Selected & Copied: ${valText} ${unitText}`);
+      showToast(`सेलेक्ट व कॉपी हुआ: ${valText} ${unitText}`);
       convertArea();
     }
 
@@ -675,14 +667,14 @@
       document.querySelectorAll('.results-grid .res-card').forEach(c => {
         c.classList.remove('active-selected');
         const badge = c.querySelector('.res-sub span:last-child');
-        if (badge) badge.innerText = '⚡ Select';
+        if (badge) badge.innerText = '⚡ सेलेक्ट';
       });
 
       const active = document.getElementById(`card_${unitKey}`);
       if (active) {
         active.classList.add('active-selected');
         const badge = active.querySelector('.res-sub span:last-child');
-        if (badge) badge.innerText = '⚡ Active';
+        if (badge) badge.innerText = '⚡ एक्टिव';
       }
     }
 
@@ -692,7 +684,6 @@
       const val = parseFloat(document.getElementById('inputVal').value) || 0;
       const unit = document.getElementById('inputUnit').value;
 
-      // Highlight current input card
       highlightActiveCard(unit);
 
       // 1. Normalization into Sq. Ft
@@ -717,7 +708,6 @@
       const acre = sqft / 43560;
       const hectare = sqft / 107639.1;
 
-      // Store raw numbers for tap-to-select
       currentRawConvertedValues = {
         sqft: Number(sqft.toFixed(2)),
         gaj: Number(gaj.toFixed(2)),
@@ -773,7 +763,7 @@
       const valuation = document.getElementById('resTotalValuation').innerText;
       const stamp = document.getElementById('resStampDuty').innerText;
 
-      const text = encodeURIComponent(`🌾 Zameen Naap & Registry Kharcha Details:\nArea: ${val} ${unit}\n= ${sqft} Square Feet\n= ${gaj} Gaj (वर्ग गज)\n= ${bigha} Bigha (बीघा)\n\nSarkari Valuation: ${valuation}\nAnumanit Stamp Duty: ${stamp}\n\nSeedhe check karein: ` + window.location.href);
+      const text = encodeURIComponent(`🌾 जमीन नाप एवं रजिस्ट्री खर्च विवरण:\nकुल रकबा: ${val} ${unit}\n= ${sqft} वर्ग फुट (Sq. Ft)\n= ${gaj} वर्ग गज (Gaj)\n= ${bigha} बीघा (Bigha)\n\nसरकारी मूल्यांकन: ${valuation}\nअनुमानित स्टाम्प खर्च: ${stamp}\n\nऑनलाइन चेक करें: ` + window.location.href);
       window.open(`https://api.whatsapp.com/send?text=${text}`, '_blank');
     }
   </script>
