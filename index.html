@@ -168,7 +168,8 @@
       margin-bottom: 1.25rem;
       line-height: 1.5;
     }
-    /* Results Grid */
+    
+    /* CLICKABLE INTERACTIVE RESULTS CARDS */
     .results-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -182,10 +183,35 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      cursor: pointer;
+      user-select: none;
+      position: relative;
+      transition: all 0.15s ease;
     }
-    .res-card.highlight {
-      border-color: rgba(16, 185, 129, 0.4);
-      background: rgba(16, 185, 129, 0.05);
+    .res-card:hover {
+      border-color: var(--accent);
+      background: rgba(16, 185, 129, 0.08);
+      transform: translateY(-2px);
+    }
+    .res-card:active {
+      transform: scale(0.97);
+    }
+    .res-card.active-selected {
+      border-color: var(--accent) !important;
+      background: rgba(16, 185, 129, 0.15) !important;
+      box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.3);
+    }
+    .res-card .copy-tag {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      font-size: 0.65rem;
+      color: var(--muted);
+      opacity: 0.7;
+    }
+    .res-card:hover .copy-tag {
+      color: var(--accent);
+      opacity: 1;
     }
     .res-unit {
       font-size: 0.75rem;
@@ -203,8 +229,12 @@
     .res-sub {
       font-size: 0.72rem;
       color: var(--muted);
-      margin-top: 2px;
+      margin-top: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
+
     /* Registry Calculation Card */
     .calc-result-box {
       background: linear-gradient(145deg, rgba(16, 185, 129, 0.12), rgba(56, 189, 248, 0.05));
@@ -252,6 +282,31 @@
       transition: background-color 0.15s ease;
     }
     .btn-action:hover { background: var(--accent-hover); }
+
+    /* Toast */
+    #toast {
+      visibility: hidden;
+      min-width: 220px;
+      background-color: var(--accent);
+      color: #052e16;
+      text-align: center;
+      border-radius: 6px;
+      padding: 10px 16px;
+      position: fixed;
+      z-index: 2000;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-weight: 700;
+      font-size: 0.82rem;
+    }
+    #toast.show {
+      visibility: visible;
+      animation: fadein 0.3s, fadeout 0.3s 2.2s;
+    }
+    @keyframes fadein { from { bottom: 0; opacity: 0; } to { bottom: 24px; opacity: 1; } }
+    @keyframes fadeout { from { bottom: 24px; opacity: 1; } to { bottom: 0; opacity: 0; } }
+
     /* Ecosystem Section */
     .ecosystem-section {
       margin-top: 2.5rem;
@@ -335,7 +390,7 @@
         <span class="brand-badge">UP & Bihar Standard</span>
       </div>
       <h1>Zameen Naap & Registry Kharcha Calculator</h1>
-      <p>Apni tehsil ya zila ke hisaab se Bigha, Biswa, Kattha, Dhur aur Gaj ko Square Feet me badle aur Registry ka kharcha check karein.</p>
+      <p>Bigha, Biswa, Kattha, Dhur aur Gaj ko Square Feet me badle aur Registry ka kharcha check karein.</p>
     </header>
 
     <div class="grid-layout">
@@ -379,52 +434,72 @@
           </div>
         </div>
 
-        <!-- CONVERTED RESULTS TABLE -->
+        <!-- CONVERTED RESULTS TABLE (NOW FULLY CLICKABLE & SELECTABLE) -->
         <div class="card">
-          <div class="card-title" style="color:var(--accent);">2. Sabhi Units Me Sahi Naap</div>
-          <div class="card-subtitle">Khatoni, registry aur plotting ke hisaab se converted details</div>
+          <div class="card-title" style="color:var(--accent);">
+            <span>2. Sabhi Units Me Sahi Naap</span>
+            <span style="font-size:0.7rem; font-weight:600; color:var(--muted); margin-left:auto;">(Kisi bhi card par click karke copy ya select karein)</span>
+          </div>
+          <div class="card-subtitle">Khatoni, registry aur plotting ke hisaab se converted details:</div>
 
           <div class="results-grid">
-            <div class="res-card highlight">
+            
+            <div class="res-card" id="card_sqft" onclick="selectUnitFromCard('sqft')">
+              <span class="copy-tag">📋 Tap to select</span>
               <span class="res-unit">Square Feet (वर्ग फुट)</span>
               <span class="res-val" id="resSqft">27,225</span>
-              <span class="res-sub">Registry office standard</span>
+              <span class="res-sub"><span>Registry standard</span><span>⚡ Select</span></span>
             </div>
-            <div class="res-card highlight">
+
+            <div class="res-card" id="card_gaj" onclick="selectUnitFromCard('gaj')">
+              <span class="copy-tag">📋 Tap to select</span>
               <span class="res-unit">Gaj / Sq. Yard (वर्ग गज)</span>
               <span class="res-val" id="resGaj">3,025</span>
-              <span class="res-sub">Plotting rate ke liye</span>
+              <span class="res-sub"><span>Plotting rate ke liye</span><span>⚡ Select</span></span>
             </div>
-            <div class="res-card">
+
+            <div class="res-card" id="card_biswa" onclick="selectUnitFromCard('biswa')">
+              <span class="copy-tag">📋 Tap to select</span>
               <span class="res-unit" id="lblSubBigha">Biswa / Kattha</span>
               <span class="res-val" id="resBiswa">20.00</span>
-              <span class="res-sub">1 Bigha = 20 Biswa/Kattha</span>
+              <span class="res-sub"><span>1 Bigha = 20 Biswa</span><span>⚡ Select</span></span>
             </div>
-            <div class="res-card">
+
+            <div class="res-card" id="card_dhur" onclick="selectUnitFromCard('dhur')">
+              <span class="copy-tag">📋 Tap to select</span>
               <span class="res-unit">Dhur (धुर)</span>
               <span class="res-val" id="resDhur">400.00</span>
-              <span class="res-sub">Sabse chhoti naap</span>
+              <span class="res-sub"><span>Sabse chhoti naap</span><span>⚡ Select</span></span>
             </div>
-            <div class="res-card">
+
+            <div class="res-card active-selected" id="card_bigha" onclick="selectUnitFromCard('bigha')">
+              <span class="copy-tag">📋 Tap to select</span>
               <span class="res-unit">Bigha (बीघा)</span>
               <span class="res-val" id="resBigha">1.000</span>
-              <span class="res-sub">Local kisan standard</span>
+              <span class="res-sub"><span>Local kisan standard</span><span>⚡ Active</span></span>
             </div>
-            <div class="res-card">
+
+            <div class="res-card" id="card_dismil" onclick="selectUnitFromCard('dismil')">
+              <span class="copy-tag">📋 Tap to select</span>
               <span class="res-unit">Dismil (डिसमिल)</span>
               <span class="res-val" id="resDismil">62.50</span>
-              <span class="res-sub">1 Acre = 100 Dismil</span>
+              <span class="res-sub"><span>1 Acre = 100 Dismil</span><span>⚡ Select</span></span>
             </div>
-            <div class="res-card">
+
+            <div class="res-card" id="card_acre" onclick="selectUnitFromCard('acre')">
+              <span class="copy-tag">📋 Tap to select</span>
               <span class="res-unit">Acre / Killa (एकड़)</span>
               <span class="res-val" id="resAcre">0.625</span>
-              <span class="res-sub">43,560 Square Feet</span>
+              <span class="res-sub"><span>43,560 Sq Feet</span><span>⚡ Select</span></span>
             </div>
-            <div class="res-card">
+
+            <div class="res-card" id="card_hectare" onclick="selectUnitFromCard('hectare')">
+              <span class="copy-tag">📋 Tap to select</span>
               <span class="res-unit">Hectare (हेक्टेयर)</span>
               <span class="res-val" id="resHectare">0.253</span>
-              <span class="res-sub">Khatoni me likha hota hai</span>
+              <span class="res-sub"><span>Khatoni me likha hota hai</span><span>⚡ Select</span></span>
             </div>
+
           </div>
         </div>
       </div>
@@ -508,6 +583,8 @@
     </footer>
   </div>
 
+  <div id="toast">Value copy ho gayi!</div>
+
   <script>
     const standards = {
       up_east: {
@@ -543,6 +620,7 @@
     };
 
     let totalCalculatedSqft = 27225;
+    let currentRawConvertedValues = {};
 
     window.addEventListener('DOMContentLoaded', () => {
       updateStandardInfo();
@@ -550,6 +628,13 @@
 
     function formatInr(val) {
       return '₹' + Math.round(val).toLocaleString('en-IN');
+    }
+
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      t.innerText = msg;
+      t.className = 'show';
+      setTimeout(() => { t.className = t.className.replace('show', ''); }, 2200);
     }
 
     function updateStandardInfo() {
@@ -560,11 +645,55 @@
       convertArea();
     }
 
+    // FUNCTION TO SELECT UNIT BY CLICKING ITS CARD
+    function selectUnitFromCard(unitKey) {
+      const unitDropdown = document.getElementById('inputUnit');
+      const inputValBox = document.getElementById('inputVal');
+      
+      // Update dropdown
+      unitDropdown.value = unitKey;
+      
+      // Put the current converted value of that card into the main input
+      if (currentRawConvertedValues[unitKey] !== undefined) {
+        inputValBox.value = currentRawConvertedValues[unitKey];
+      }
+
+      // Highlight the selected card
+      highlightActiveCard(unitKey);
+
+      // Copy text to clipboard
+      const cardEl = document.getElementById(`card_${unitKey}`);
+      const valText = cardEl.querySelector('.res-val').innerText;
+      const unitText = cardEl.querySelector('.res-unit').innerText;
+      navigator.clipboard.writeText(`${valText} ${unitText}`).catch(() => {});
+
+      showToast(`Selected & Copied: ${valText} ${unitText}`);
+      convertArea();
+    }
+
+    function highlightActiveCard(unitKey) {
+      document.querySelectorAll('.results-grid .res-card').forEach(c => {
+        c.classList.remove('active-selected');
+        const badge = c.querySelector('.res-sub span:last-child');
+        if (badge) badge.innerText = '⚡ Select';
+      });
+
+      const active = document.getElementById(`card_${unitKey}`);
+      if (active) {
+        active.classList.add('active-selected');
+        const badge = active.querySelector('.res-sub span:last-child');
+        if (badge) badge.innerText = '⚡ Active';
+      }
+    }
+
     function convertArea() {
       const stdKey = document.getElementById('selStandard').value;
       const std = standards[stdKey];
       const val = parseFloat(document.getElementById('inputVal').value) || 0;
       const unit = document.getElementById('inputUnit').value;
+
+      // Highlight current input card
+      highlightActiveCard(unit);
 
       // 1. Normalization into Sq. Ft
       let sqft = 0;
@@ -587,6 +716,18 @@
       const dismil = sqft / 435.6;
       const acre = sqft / 43560;
       const hectare = sqft / 107639.1;
+
+      // Store raw numbers for tap-to-select
+      currentRawConvertedValues = {
+        sqft: Number(sqft.toFixed(2)),
+        gaj: Number(gaj.toFixed(2)),
+        bigha: Number(bigha.toFixed(3)),
+        biswa: Number(biswa.toFixed(2)),
+        dhur: Number(dhur.toFixed(2)),
+        dismil: Number(dismil.toFixed(2)),
+        acre: Number(acre.toFixed(3)),
+        hectare: Number(hectare.toFixed(4))
+      };
 
       document.getElementById('resSqft').innerText = Number(sqft.toFixed(2)).toLocaleString('en-IN');
       document.getElementById('resGaj').innerText = Number(gaj.toFixed(2)).toLocaleString('en-IN');
